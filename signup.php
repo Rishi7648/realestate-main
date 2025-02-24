@@ -1,6 +1,7 @@
 <?php
 include 'db.php';
-
+/* form is submitted using post method*/ 
+/*retriving form data */ 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $firstName = trim($_POST['firstname']);
     $lastName = trim($_POST['lastname']);
@@ -19,8 +20,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         exit();
     }
 
+    // Password strength validation
+    if (!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[A-Za-z\d]{8,}$/', $password)) {
+        echo "<p>Password is weak! Please use at least 6 characters with a mix of letters and numbers.</p>";
+        exit();
+    }
+
     // Hash the password
-    $Password = $password;
+    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     try {
         // Check if the email already exists
@@ -34,13 +41,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             $sql = "INSERT INTO users (first_name, last_name, email, phone, password) 
                     VALUES (:first_name, :last_name, :email, :phone, :password)";
             $stmt = $conn->prepare($sql);
+/* Binding Data and Executing the Query*/
 
             $data = [
                 'first_name' => $firstName,
                 'last_name' => $lastName,
                 'email' => $email,
                 'phone' => $phone,
-                'password' => $Password
+                'password' => $hashedPassword
             ];
 
             if ($stmt->execute($data)) {
@@ -69,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             margin: 0;
             padding: 0;
             height: 100vh;
-            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            background: linear-gradient(135deg, #ff7e5f, #feb47b); /*background color behind of signup form*/
             display: flex;
             justify-content: center;
             align-items: center;

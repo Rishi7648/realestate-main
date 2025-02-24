@@ -10,7 +10,4 @@ try {
 } catch (PDOException $e) {
     die("Connection failed: " . $e->getMessage());
 }
-if($conn){
-    echo"Success";
-}
 ?>

@@ -69,8 +69,8 @@ if (isset($_POST['approve_property'])) {
         font-family: 'Arial', sans-serif;
         margin: 0;
         padding: 0;
-        background-color: #f8f9fa;
-        color: #333;
+        background-color: #f8f9fa; /*dashboard color on buy properties button*/
+        color: #333; 
     }
 
     .container {
@@ -133,7 +133,7 @@ if (isset($_POST['approve_property'])) {
     .viewland, .viewhouse {
     padding: 15px 30px;
     font-size: 1.1rem;
-    color: white;
+    color: white; /*view house button text color*/
     border: none;
     border-radius: 30px;
     cursor: pointer;
@@ -145,11 +145,11 @@ if (isset($_POST['approve_property'])) {
 }
 
 .viewland {
-    background-color: #3498db; /* Blue for View Land */
+    background-color: #3498db; /* Blue for View Land button */
 }
 
 .viewhouse {
-    background-color: #e67e22; /* Orange for View House */
+    background-color: #e67e22; /* Orange for View House button */
 }
 
 .viewland:hover {
@@ -331,7 +331,7 @@ nav ul li a:hover {
     }
 }
 
-    /* Add this CSS to hide elements initially */
+    /*  this CSS to hide elements initially */
     .hidden {
         display: none;
     }
@@ -374,7 +374,7 @@ nav ul li a:hover {
         <li><a href="about.php">About</a></li>
         <li><a href="contact.php">Contact us</a></li>
         <li><a href="my_property.php">My Property</a></li>
-        <li><a href="logout.php">Logout</a></li>
+        <li><a href="logout_confirmation.php">Logout</a></li>
     </ul>
 </nav>
 <div class="container">
@@ -434,6 +434,9 @@ nav ul li a:hover {
         <?php if (!empty($house_properties)): ?>
             <?php foreach ($house_properties as $property): ?>
                 <div class="property">
+
+            <!-- htmlspecialchars to prevent XSS attacks(Cross-Site Scripting) that allows attacker  to add malicious script -->
+
                     <h3>Location: <?= htmlspecialchars($property['location']) ?></h3>
                     <p>Price: NPR <?= htmlspecialchars($property['price']) ?></p>
                     <p>area: <?= htmlspecialchars($property['area']) ?></p>

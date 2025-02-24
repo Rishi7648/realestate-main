@@ -124,17 +124,27 @@ $house_properties = $stmt_house->fetchAll(PDO::FETCH_ASSOC);
             border: none;
             border-radius: 5px;
         }
-        .logout-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            padding: 10px 20px;
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+        /* Logout Button */
+.logout-btn {
+    position: fixed; /* Fixed position to keep it visible while scrolling */
+    top: 20px; /* Distance from the top */
+    right: 20px; /* Distance from the right */
+    padding: 10px 20px; /* Padding inside the button */
+    background-color: #dc3545; /* Red color for logout */
+    color: white; /* White text */
+    border: none; /* Remove default border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 16px; /* Font size */
+    transition: background-color 0.3s ease; /* Smooth hover effect */
+    z-index: 1000; /* Ensure it stays on top of other elements */
+}
+
+/* Hover effect for logout button */
+.logout-btn:hover {
+    background-color: #c82333; /* Darker red on hover */
+}
+        
         @media (max-width: 768px) {
             .tab-btns {
                 flex-direction: column;
@@ -165,12 +175,13 @@ $house_properties = $stmt_house->fetchAll(PDO::FETCH_ASSOC);
     </style>
 </head>
 <body>
-    
-    <button class="logout-btn" onclick="window.location.href='admin_logout.php'">Logout</button>
+     <!-- Logout Button -->
+     <button class="logout-btn" onclick="window.location.href='admin_logout_confirmation.php'">Logout</button>
+
 
     <div class="container">
         <h1>Admin Panel</h1>
-
+       
         <!-- View Property Button -->
         <button class="view-property-btn" id="viewPropertyBtn" onclick="showPropertyOptions()">View Property</button>
 

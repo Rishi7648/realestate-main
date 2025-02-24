@@ -116,6 +116,7 @@
         </div>
         <div class="map-container">
             <h2>Our Location</h2>
+            <!--<iframe> tag is used to embed a Google Map using URL but not google map API.  -->
             <iframe 
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3533.0204361616183!2d85.31232921543756!3d27.714929932279202!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb18fd3f94d073%3A0x5e5e07e1b2d7b115!2sThamel%2C%20Kathmandu%2044600%2C%20Nepal!5e0!3m2!1sen!2snp!4v1694138885534!5m2!1sen!2snp" 
                 allowfullscreen 

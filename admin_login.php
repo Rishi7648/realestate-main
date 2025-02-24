@@ -7,7 +7,22 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Handle admin signup
         $username = $_POST['username'];
         $email = $_POST['email'];
-        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        $password = $_POST['password'];
+
+        // Validate email format
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            echo "<p>Invalid email format!</p>";
+            exit();
+        }
+
+        // Validate password strength
+        if (!preg_match('/^(?=.*\d)(?=.*[A-Za-z])[A-Za-z\d]{8,}$/', $password)) {
+            echo "<p>Password is weak! Please use at least 8 characters with a mix of letters and numbers.</p>";
+            exit();
+        }
+
+        // Hash the password
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
         // Check if admin email already exists
         $sql = "SELECT * FROM admin WHERE email = :email";
@@ -21,8 +36,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             // Insert new admin into the database
             $sql = "INSERT INTO admin (username, email, password) VALUES (:username, :email, :password)";
             $stmt = $conn->prepare($sql);
-            $stmt->execute(['username' => $username, 'email' => $email, 'password' => $password]);
-            echo "<p>Admin account created successfully. You can now login.</p>";
+            $stmt->execute([
+                'username' => $username,
+                'email' => $email,
+                'password' => $hashedPassword // Use the hashed password here
+            ]);
+
+           
         }
     } elseif (isset($_POST['login'])) {
         // Handle admin login
@@ -41,22 +61,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             header("Location: admin.php");
             exit();
         } else {
-            echo "<p>Invalid admin credentials!</p>";
-        }
-    } elseif (isset($_POST['reset_password'])) {
-        // Handle password reset request
-        $email = $_POST['email'];
-
-        $sql = "SELECT * FROM admin WHERE email = :email";
-        $stmt = $conn->prepare($sql);
-        $stmt->execute(['email' => $email]);
-        $admin = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if ($admin) {
-            echo "<p>Password reset link sent to your email.</p>";
-            // Here, you should implement actual email sending with a reset link
-        } else {
-            echo "<p>Email not found!</p>";
+            echo "<script>alert('Invalid admin credentials!')</script>";
         }
     }
 }
@@ -211,15 +216,7 @@ p .toggle-form {
        
     </div>
 
-    <!-- Reset Password Form -->
-    <div class="form-container" id="reset-form" style="display: none;">
-        <h2>Reset Password</h2>
-        <form method="POST">
-            <input type="email" name="email" placeholder="Enter your email" required>
-            <button type="submit" name="reset_password">Reset Password</button>
-        </form>
-        <p class="toggle-form" onclick="toggleForm('login-form')">Back to Login</p>
-    </div>
+   
 
 <script>
     function toggleForm(formId) {

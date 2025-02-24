@@ -5,21 +5,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
+    // Fetch user from the database
     $sql = "SELECT * FROM users WHERE email = :email";
     $stmt = $conn->prepare($sql);
     $stmt->execute(['email' => $email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     // Check if user exists and verify the password
-    if ($user && $password) {
+    if ($user && password_verify($password, $user['password'])) {
+        // Password is correct, start the session
         session_start();
         $_SESSION['user_id'] = $user['id'];
         $_SESSION['role'] = $user['role'];
 
+        // Redirect based on user role
         header("Location: " . ($user['role'] == 'admin' ? 'admin_dashboard.php' : 'index.php'));
         exit();
     } else {
-        echo "<p>Invalid email or password!</p>"; 
+        // Invalid credentials
+        echo "<script>alert('Invalid email or password!')</script>";
     }
 }
 ?>
@@ -159,6 +163,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 opacity: 1;
             }
         }
+        
+
     </style>
 </head>
 <body>

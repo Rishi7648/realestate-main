@@ -271,7 +271,7 @@ nav ul li a:hover {
         <li><a href="about.php">About</a></li>
         <li><a href="contact.php">Contact us</a></li>
         <li><a href="my_property.php">My Property</a></li>
-        <li><a href="logout.php">Logout</a></li>
+        <li><a href="logout_confirmation.php">Logout</a></li>
     </ul>
 </nav>
     <div class="container">

@@ -205,7 +205,7 @@ body {
             <li><a href="sell.php">Sell</a></li>
             <li><a href="contact.php">Contact Us</a></li>
             <li><a href="my_property.php?id=PROPERTY_ID">My Property</a></li>
-            <li><a href="logout.php" onclick="logout()">Logout</a></li>
+            <li><a href="logout_confirmation.php">Logout</a></li>
         </ul>
     </nav>
 </header>
