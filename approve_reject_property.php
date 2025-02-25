@@ -1,8 +1,9 @@
 <?php
 session_start();
 include 'db.php'; // Include the database connection file
-require 'vendor/autoload.php'; // Include PHPMailer
+require 'vendor/autoload.php'; // Include PHPMailer which handles email sending.
 
+// PHPMailer Classes
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 

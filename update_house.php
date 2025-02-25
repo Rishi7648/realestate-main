@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 }
             }
         }
-
+// JSON (JavaScript Object Notation) is a lightweight format used to store and exchange data between a server and a web application//
         $property_images_json = json_encode($property_images_paths);
 
         // Update the database
@@ -150,7 +150,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <h1>Update House Property</h1>
     <form action="" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $property['id']; ?>">
-
+       <!-- htmlspecialchars for stopping malicious scripts from running. -->
         <label for="location">Location:</label>
         <input type="text" id="location" name="location" value="<?php echo htmlspecialchars($property['location']); ?>" required>
 

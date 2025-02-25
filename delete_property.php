@@ -18,6 +18,7 @@ if (!isset($_GET['id'])) {
 $property_id = $_GET['id'];
 
 // Fetch the type of property (land or house) from the database
+// fetch refers to retrieving data from a database//
 $sql = "SELECT 'land' AS type FROM land_properties WHERE id = :id AND user_id = :user_id 
         UNION 
         SELECT 'house' AS type FROM houseproperties WHERE id = :id AND user_id = :user_id";
@@ -25,7 +26,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bindParam(':id', $property_id, PDO::PARAM_INT);
 $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
 $stmt->execute();
-
+//bindparam prevents SQL injection. SQL Injection (SQLi) is a type of cyber attack where a hacker injects malicious SQL code into a database query to manipulate or access data illegally.//
 $property = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!$property) {
@@ -42,6 +43,7 @@ $stmt = $conn->prepare($sql);
 $stmt->bindParam(':id', $property_id, PDO::PARAM_INT);
 $stmt->bindParam(':user_id', $_SESSION['user_id'], PDO::PARAM_INT);
 
+// $stmt is PD0 (PHP databse object) that securely executes SQL queries,// 
 if ($stmt->execute()) {
     echo "Property deleted successfully.";
 } else {

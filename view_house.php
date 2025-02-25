@@ -18,7 +18,7 @@ if (isset($_GET['id'])) {
 
     // Display the property details
     echo "<h2>Property Details</h2>";
-    
+    //htmlspecialchars for stopping malicious scripts from running//
     // Display property fields
     echo "<p><strong>Total Floors:</strong> " . htmlspecialchars($property['floors']) . "</p>";
     echo "<p><strong>Bedrooms:</strong> " . htmlspecialchars($property['bedrooms']) . "</p>";

@@ -163,8 +163,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 opacity: 1;
             }
         }
-        
-
     </style>
 </head>
 <body>
@@ -181,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <button type="submit">Login</button>
             
             <p>Don't have an account? <a href="signup.php">Sign up</a></p>
-            <a href="forgot_password.php" class="forgot-password">Forgot Password?</a>
+            <a href="#" class="forgot-password" onclick="showForgotPasswordMessage()">Forgot Password?</a>
         </form>
     </div>
 
@@ -207,6 +205,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     passwordVisible = false;
                 }, 5000);
             }
+        }
+
+        function showForgotPasswordMessage() {
+            alert("This function isn't working right now. Please try again later.");
         }
     </script>
 </body>

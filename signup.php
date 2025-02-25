@@ -160,10 +160,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
 
         /* Forgot Password link */
-        .form-container .forgot-password {
-            text-align: center;
-            margin-top: 10px;
-        }
+.forgot-password {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    color: #fff;
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #6a11cb; /* Change to a lighter or contrasting color on hover */
+    text-decoration: underline;
+}
+Explanation o
 
         /* Signup link */
         .form-container p {
@@ -218,9 +229,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <button type="submit">Signup</button>
         </form>
         <p>Already have an account? <a href="login.php">Login here</a></p>
-        <div class="forgot-password">
-            <a href="forgot-password.php">Forgot Password?</a>
-        </div>
+        <a href="#" class="forgot-password" onclick="showForgotPasswordMessage()">Forgot Password?</a>
     </div>
 
     <script>
@@ -238,6 +247,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 eyeIcon.innerHTML = "&#128586;";
                 passwordVisible = true;
             }
+        }
+        function showForgotPasswordMessage() {
+            alert("This function isn't working right now. Please try again later.");
         }
     </script>
 </body>

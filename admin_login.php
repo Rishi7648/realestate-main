@@ -149,7 +149,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     text-decoration: none;
     color: #4e54c8;
     transition: all 0.3s ease-in-out;
-    position: relative;
+    position: relative; /** its normal position. This means you can move the element without affecting other elements around it. */
 }
 
 .toggle-form:hover {
