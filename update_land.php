@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         // Update property in the database
         $sql = "UPDATE land_properties 
                 SET area = :area, location = :location, price = :price, 
-                    map_image = :map_image, property_images = :property_images 
+                    map_image = :map_image, property_images = :property_images, status = 'pending'
                 WHERE id = :id";
         $stmt = $conn->prepare($sql);
 

@@ -76,7 +76,7 @@ if (isset($_POST['approve_property'])) {
     .container {
         width: 90%;
         margin: auto;
-        padding: 20px;
+        padding: 50px;
         max-width: 1200px;
     }
 

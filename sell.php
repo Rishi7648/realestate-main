@@ -283,7 +283,7 @@ nav ul li a:hover {
 
         <div id="land-form" class="property-section">
             <h2>List Your Land</h2>
-            <h3>please uplaod clear photos</h3>
+            <h3>please upload clear photos</h3>
             <form action="./submit_land.php" method="post" enctype="multipart/form-data">
                 <label for="area">Area of Land:</label>
                 <input type="text" id="area" name="area" placeholder="Enter land area" required>

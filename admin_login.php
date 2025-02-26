@@ -177,46 +177,74 @@ p .toggle-form {
     display: block;
     margin-top: 10px;
 }
+/* Forgot Password Link */
+.forgot-password {
+    font-size: 14px;
+    color: #4e54c8; /* Matching the gradient theme */
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #8f94fb; /* Lighter shade of the gradient theme */
+    text-shadow: 0 0 10px rgba(79, 92, 238, 0.6); /* Subtle glow effect */
+}
+
+/* Underline Effect on Hover */
+.forgot-password::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, #4e54c8, #8f94fb);
+    transition: width 0.3s ease-in-out;
+}
+
+.forgot-password:hover::after {
+    width: 100%;
+}
 
     </style>
 </head>
 <body>
 
     <!-- Admin Login Form -->
-    <div class="form-container" id="login-form">
-        <h2>Admin Login</h2>
-        <form method="POST">
-            <input type="email" name="email" placeholder="Admin Email" required>
-            <div class="password-container">
-                <input type="password" id="login-password" name="password" placeholder="Password" required>
-                <span class="eye-icon" onclick="togglePassword('login-password')">&#128065;</span>
-            </div>
-            <button type="submit" name="login">Login as Admin</button>
-        </form>
-        <p class="toggle-form" onclick="toggleForm('signup-form')">Don't have an account? Signup</p>
-        <p><a href="#" class="toggle-form" onclick="toggleForm('reset-form')">Forgot Password?</a></p>
-      
-    </div>
+<div class="form-container" id="login-form">
+    <h2>Admin Login</h2>
+    <form method="POST">
+        <input type="email" name="email" placeholder="Admin Email" required>
+        <div class="password-container">
+            <input type="password" id="login-password" name="password" placeholder="Password" required>
+            <span class="eye-icon" onclick="togglePassword('login-password')">&#128065;</span>
+        </div>
+        <button type="submit" name="login">Login as Admin</button>
+    </form>
+    <p>
+        <span class="toggle-form" onclick="toggleForm('signup-form')">Don't have an account? Signup</span><br>
+        <a href="#" class="forgot-password" onclick="showForgotPasswordMessage()">Forgot Password?</a>
+    </p>
+</div>
 
-    <!-- Admin Signup Form -->
-    <div class="form-container" id="signup-form" style="display: none;">
-        <h2>Admin Signup</h2>
-        <form method="POST">
-            <input type="text" name="username" placeholder="Username" required>
-            <input type="text" name="phone no" placeholder="Phone no" required>
-            <input type="email" name="email" placeholder="Admin Email" required>
-            <div class="password-container">
-                <input type="password" id="signup-password" name="password" placeholder="Password" required>
-                <span class="eye-icon" onclick="togglePassword('signup-password')">&#128065;</span>
-            </div>
-            <button type="submit" name="signup">Signup as Admin</button>
-        </form>
-        <p class="toggle-form" onclick="toggleForm('login-form')">Already have an account? Login</p>
-        <p><a href="#" class="toggle-form" onclick="toggleForm('reset-form')">Forgot Password?</a></p>
-       
-    </div>
-
-   
+<!-- Admin Signup Form -->
+<div class="form-container" id="signup-form" style="display: none;">
+    <h2>Admin Signup</h2>
+    <form method="POST">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="text" name="phone no" placeholder="Phone no" required>
+        <input type="email" name="email" placeholder="Admin Email" required>
+        <div class="password-container">
+            <input type="password" id="signup-password" name="password" placeholder="Password" required>
+            <span class="eye-icon" onclick="togglePassword('signup-password')">&#128065;</span>
+        </div>
+        <button type="submit" name="signup">Signup as Admin</button>
+    </form>
+    <p>
+        <span class="toggle-form" onclick="toggleForm('login-form')">Already have an account? Login</span><br>
+        <a href="#" class="forgot-password" onclick="showForgotPasswordMessage()">Forgot Password?</a>
+    </p>
+</div>
 
 <script>
     function toggleForm(formId) {
@@ -236,6 +264,9 @@ p .toggle-form {
             icon.innerHTML = "&#128065;"; // Eye closed icon
         }
     }
+    function showForgotPasswordMessage() {
+            alert("This function isn't working right now. Please try again later.");
+        }
 </script>
 
 </body>

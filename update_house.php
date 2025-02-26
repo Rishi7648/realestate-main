@@ -52,14 +52,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 }
             }
         }
-// JSON (JavaScript Object Notation) is a lightweight format used to store and exchange data between a server and a web application//
+
         $property_images_json = json_encode($property_images_paths);
 
         // Update the database
         $sql = "UPDATE houseproperties 
                 SET location = :location, price = :price, floors = :floors, bedrooms = :bedrooms, area = :area,
                     living_rooms = :living_rooms, kitchens = :kitchens, washrooms = :washrooms, 
-                    attached_washrooms = :attached_washrooms, map_image = :map_image, property_images = :property_images 
+                    attached_washrooms = :attached_washrooms, map_image = :map_image, property_images = :property_images, status = 'pending'
                 WHERE id = :id";
         $stmt = $conn->prepare($sql);
 
@@ -150,14 +150,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <h1>Update House Property</h1>
     <form action="" method="POST" enctype="multipart/form-data">
         <input type="hidden" name="id" value="<?php echo $property['id']; ?>">
-       <!-- htmlspecialchars for stopping malicious scripts from running. -->
+
         <label for="location">Location:</label>
         <input type="text" id="location" name="location" value="<?php echo htmlspecialchars($property['location']); ?>" required>
 
         <label for="price">Price:</label>
         <input type="text" id="price" name="price" value="<?php echo htmlspecialchars($property['price']); ?>" required>
 
-        <label for="area">area:</label>
+        <label for="area">Area:</label>
         <input type="text" id="area" name="area" value="<?php echo htmlspecialchars($property['area']); ?>" required>
 
         <label for="floors">Total Floors:</label>
