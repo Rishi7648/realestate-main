@@ -171,7 +171,10 @@ $house_properties = $stmt_house->fetchAll(PDO::FETCH_ASSOC);
         .hidden {
             display: none;
         }
-        
+        .btn.delete {
+    background-color: #ff4444; /* Red color for delete */
+    color: white;
+}
     </style>
 </head>
 <body>
@@ -226,6 +229,7 @@ $house_properties = $stmt_house->fetchAll(PDO::FETCH_ASSOC);
                         ?>
                         <button class="btn approve" onclick="handleAction(<?= $property['id'] ?>, 'land', 1)">Approve</button>
                         <button class="btn reject" onclick="handleAction(<?= $property['id'] ?>, 'land', 0)">Reject</button>
+                        <button class="btn delete" onclick="handleAction(<?= $property['id'] ?>, 'land', 2)">Delete</button>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -266,6 +270,7 @@ $house_properties = $stmt_house->fetchAll(PDO::FETCH_ASSOC);
                         ?>
                         <button class="btn approve" onclick="handleAction(<?= $property['id'] ?>, 'house', 1)">Approve</button>
                         <button class="btn reject" onclick="handleAction(<?= $property['id'] ?>, 'house', 0)">Reject</button>
+                        <button class="btn delete" onclick="handleAction(<?= $property['id'] ?>, 'land', 2)">Delete</button>
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
@@ -305,11 +310,16 @@ $house_properties = $stmt_house->fetchAll(PDO::FETCH_ASSOC);
     }
     function handleAction(propertyId, propertyType, action) {
     let rejectionReason = '';
-    if (action === 0) {
+    if (action === 0) { // Reject action
         rejectionReason = prompt('Please provide a reason for rejection:');
         if (!rejectionReason) {
             alert('Rejection reason is required.');
             return;
+        }
+    } else if (action === 2) { // Delete action
+        const confirmDelete = confirm('Are you sure you want to delete this property? This action cannot be undone.');
+        if (!confirmDelete) {
+            return; // Exit if the user cancels the deletion
         }
     }
 
@@ -339,6 +349,7 @@ $house_properties = $stmt_house->fetchAll(PDO::FETCH_ASSOC);
         alert('An error occurred while updating the status.');
     });
 }
+
     </script>
 </body>
 </html>

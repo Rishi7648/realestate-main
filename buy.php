@@ -53,8 +53,8 @@ if (isset($_POST['approve_property'])) {
         $stmt_approve_house->execute();
     }
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -363,7 +363,6 @@ nav ul li a:hover {
 }
     </style>
 </head>
-
 <body>
 <nav>
     <div class="menu-toggle" onclick="toggleMenu()">&#9776;</div>  <!-- Hamburger Icon -->
@@ -420,7 +419,10 @@ nav ul li a:hover {
                     }
                     ?>
                     <p>Posted on: <?= date('Y-m-d H:i:s', strtotime($property['created_at'])) ?></p>
-                    <h5>If you want to buy this property. You have to contact in this no:9823167724</h5>
+                    <a href="contact_broker.php?from=<?= urlencode($_SERVER['REQUEST_URI']) ?>" 
+                       style="padding: 5px 5px; background-color: #2ecc71; color: white; border: none; border-radius: 5px; cursor: pointer; text-decoration: none;">
+                       Purchase
+                    </a>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>
@@ -434,9 +436,6 @@ nav ul li a:hover {
         <?php if (!empty($house_properties)): ?>
             <?php foreach ($house_properties as $property): ?>
                 <div class="property">
-
-            <!-- htmlspecialchars to prevent XSS attacks(Cross-Site Scripting) that allows attacker  to add malicious script -->
-
                     <h3>Location: <?= htmlspecialchars($property['location']) ?></h3>
                     <p>Price: NPR <?= htmlspecialchars($property['price']) ?></p>
                     <p>area: <?= htmlspecialchars($property['area']) ?></p>
@@ -461,7 +460,10 @@ nav ul li a:hover {
                     }
                     ?>
                     <p>Posted on: <?= date('Y-m-d H:i:s', strtotime($property['created_at'])) ?></p>
-                    <h5>If you want to buy this property. You have to contact in this no:9823167724</h5>
+                    <a href="contact_broker.php?from=<?= urlencode($_SERVER['REQUEST_URI']) ?>" 
+                       style="padding: 5px 5px; background-color: #2ecc71; color: white; border: none; border-radius: 5px; cursor: pointer; text-decoration: none;">
+                       Purchase
+                    </a>
                 </div>
             <?php endforeach; ?>
         <?php else: ?>

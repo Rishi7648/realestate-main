@@ -21,7 +21,7 @@ $data = json_decode($input, true);
 if (isset($data['property_id'], $data['property_type'], $data['action'])) {
     $property_id = intval($data['property_id']); // Ensure it's an integer
     $property_type = $data['property_type'];
-    $action = intval($data['action']); // Ensure it's an integer (1 for approve, 0 for reject)
+    $action = intval($data['action']); // Ensure it's an integer (1 for approve, 0 for reject, 2 for delete)
 
     // Validate property type (should be either 'land' or 'house')
     if ($property_type !== 'land' && $property_type !== 'house') {
@@ -29,9 +29,9 @@ if (isset($data['property_id'], $data['property_type'], $data['action'])) {
         exit;
     }
 
-    // Validate action (should be either 1 or 0)
-    if ($action !== 1 && $action !== 0) {
-        echo "Invalid action. Use 1 for approve and 0 for reject.";
+    // Validate action (should be either 1, 0, or 2)
+    if ($action !== 1 && $action !== 0 && $action !== 2) {
+        echo "Invalid action. Use 1 for approve, 0 for reject, and 2 for delete.";
         exit;
     }
 
@@ -102,7 +102,7 @@ if (isset($data['property_id'], $data['property_type'], $data['action'])) {
                     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                 }
             }
-        } else {
+        } elseif ($action == 0) {
             // If rejected, update the property status to 'rejected'
             if ($property_type == 'land') {
                 $sql = "UPDATE land_properties SET status = 'rejected' WHERE id = :property_id";
@@ -136,7 +136,7 @@ if (isset($data['property_id'], $data['property_type'], $data['action'])) {
                     $mail->Port = 587;
 
                     //Recipients
-                    $mail->setFrom('rishisilwal19@gmail.com', 'Real Estate Admin');
+                    $mail->setFrom('rishisilwal19@gmail.com', 'Real Estate Nepal');
                     $mail->addAddress($email, "$first_name $last_name");
 
                     // Content
@@ -149,6 +149,25 @@ if (isset($data['property_id'], $data['property_type'], $data['action'])) {
                 } catch (Exception $e) {
                     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
                 }
+            }
+        } elseif ($action == 2) {
+            // If delete, permanently remove the property from the database
+            if ($property_type == 'land') {
+                $sql = "DELETE FROM land_properties WHERE id = :property_id";
+            } elseif ($property_type == 'house') {
+                $sql = "DELETE FROM houseproperties WHERE id = :property_id";
+            }
+
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':property_id', $property_id);
+
+            // Debugging: Check if the query was executed successfully
+            if (!$stmt->execute()) {
+                print_r($stmt->errorInfo()); // Output errors if any
+                echo "Failed to delete property.";
+            } else {
+                echo "Property deleted successfully.";
+                // No email is sent for deletion
             }
         }
     } catch (PDOException $e) {

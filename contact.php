@@ -107,7 +107,7 @@
             </div>
             <div class="contact-card">
                 <span class="contact-icon">&#128222;</span>
-                <h3>Contact: <a href="tel:+9899100101">9899100101</a></h3>
+                <h3>Contact: <a href="tel:+9823167724">9823167724</a></h3>
             </div>
             <div class="contact-card">
                 <span class="contact-icon">&#128231;</span>
