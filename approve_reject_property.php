@@ -88,13 +88,13 @@ if (isset($data['property_id'], $data['property_type'], $data['action'])) {
                     $mail->Port = 587;
 
                     //Recipients
-                    $mail->setFrom('rishisilwal19@gmail.com', 'Real Estate Admin');
+                    $mail->setFrom('rishisilwal19@gmail.com', 'Real Estate Nepal');
                     $mail->addAddress($email, "$first_name $last_name");
 
                     // Content
                     $mail->isHTML(true);
                     $mail->Subject = 'Property Approved';
-                    $mail->Body = "Dear $first_name $last_name,<br><br>Your property has been approved.<br><br>Best regards,<br>Real Estate Team";
+                    $mail->Body = "Dear $first_name $last_name,<br><br>Your property has been approved.<br><br>Best regards,<br>Real Estate Nepal";
 
                     $mail->send();
                     echo 'Approval email has been sent.';
@@ -142,7 +142,7 @@ if (isset($data['property_id'], $data['property_type'], $data['action'])) {
                     // Content
                     $mail->isHTML(true);
                     $mail->Subject = 'Property Rejected';
-                    $mail->Body = "Dear $first_name $last_name,<br><br>Your property has been rejected.<br>Reason: $rejection_reason<br><br>Best regards,<br>Real Estate Team";
+                    $mail->Body = "Dear $first_name $last_name,<br><br>Your property has been rejected.<br>Reason: $rejection_reason<br><br>Best regards,<br>Real Estate Nepal";
 
                     $mail->send();
                     echo 'Rejection email has been sent.';

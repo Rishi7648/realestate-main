@@ -38,7 +38,9 @@ $referer = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : 'buy.php
 </head>
 <body>
     <h1>Contact the Broker</h1>
+    <p>For land</p>
     <p> Contact Number: <strong>9823167724(Raja Prasad)</strong></p>
+    <p>For house</p>
     <p> Contact Number: <strong>9823169968(Dipak Praja)</strong></p>
     <p>Please call the broker to  purchase property.</p>
 
