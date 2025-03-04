@@ -62,6 +62,8 @@
 <body>
     <div class="logout-container">
         <h1>Are you sure you want to log out?</h1>
+        <!-- POST request is an HTTP method used to send data from the client (browser) to the server.
+         commonly used in forms when submitting user input -->
         <form action="logout.php" method="POST">
             <button type="submit" name="confirm_logout" class="button yes">Yes, Logout</button>
         </form>

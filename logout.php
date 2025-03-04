@@ -1,4 +1,5 @@
 <?php
+// this starts session
 session_start();
 
 // Check if the user confirmed the logout

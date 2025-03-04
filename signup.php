@@ -3,6 +3,7 @@ include 'db.php';
 /* form is submitted using post method*/ 
 /*retriving form data */ 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // A REQUEST-METHOD  in PHP refers to the HTTP method used to send data to or request data from a server
     $firstName = trim($_POST['firstname']);
     $lastName = trim($_POST['lastname']);
     $email = trim($_POST['email']);
@@ -14,7 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo "<p>Invalid email format!</p>";
         exit();
     }
-
+ 
+    // !preg_match is used for Validating input (e.g., ensuring a string does not contain invalid characters).
     if (!preg_match('/^\d{10}$/', $phone)) {
         echo "<p>Invalid phone number! Must be 10 digits.</p>";
         exit();
@@ -32,6 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     try {
         // Check if the email already exists
         $stmt = $conn->prepare("SELECT * FROM users WHERE email = :email");
+         // We use $stmt when we prepare and execute SQL queries securely
         $stmt->execute(['email' => $email]);
 
         if ($stmt->rowCount() > 0) {

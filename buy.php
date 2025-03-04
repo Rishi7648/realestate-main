@@ -10,9 +10,10 @@ $sql_land = "SELECT * FROM land_properties WHERE status = 'approved' ORDER BY cr
 $sql_house = "SELECT * FROM houseproperties WHERE status = 'approved' ORDER BY created_at DESC, is_featured DESC";
 
 if (!empty($search_location)) {
+    // DESC, This sorts the results by the created_at column in descending order, meaning newest properties appear first.
     $sql_land = "SELECT * FROM land_properties WHERE status = 'approved' AND location LIKE :location ORDER BY created_at DESC, is_featured DESC";
     $sql_house = "SELECT * FROM houseproperties WHERE status = 'approved' AND location LIKE :location ORDER BY created_at DESC, is_featured DESC";
-
+// $We use $stmt when we prepare and execute SQL queries securely
     $stmt_land = $conn->prepare($sql_land);
     $stmt_house = $conn->prepare($sql_house);
     $search_param = "%{$search_location}%";

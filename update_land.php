@@ -152,7 +152,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <!-- Update Property Form -->
 <form action="update_land.php" method="post" enctype="multipart/form-data">
     <input type="hidden" name="id" value="<?php echo $property['id']; ?>">
-    
+    <!--  htmlspecialchars for stopping malicious scripts from running// -->
     <label for="area">Area:</label>
     <input type="text" id="area" name="area" value="<?php echo htmlspecialchars($property['area']); ?>" required>
     

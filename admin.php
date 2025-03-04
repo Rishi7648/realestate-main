@@ -220,6 +220,7 @@ $house_properties = $stmt_house->fetchAll(PDO::FETCH_ASSOC);
                         <img src="<?= htmlspecialchars($property['map_image']) ?>" alt="Property Map">
                         <h4>Images:</h4>
                         <?php
+                        // JSON (JavaScript Object Notation) is a lightweight format for storing and exchanging data between a server and a client
                         $images = json_decode($property['property_images'], true);
                         if ($images && is_array($images)) {
                             foreach ($images as $image) {
@@ -243,6 +244,7 @@ $house_properties = $stmt_house->fetchAll(PDO::FETCH_ASSOC);
             <?php if (!empty($house_properties)): ?>
                 <?php foreach ($house_properties as $property): ?>
                     <div class="property">
+                <!--  htmlspecialchars for stopping malicious scripts from running -->
                         <p><strong>ID:</strong> <?php echo htmlspecialchars($property['id']); ?></p>
                         <h3>Location: <?= htmlspecialchars($property['location']) ?></h3>
                         <p>Floors: <?= htmlspecialchars($property['floors']) ?></p>
@@ -261,6 +263,7 @@ $house_properties = $stmt_house->fetchAll(PDO::FETCH_ASSOC);
                         <img src="<?= htmlspecialchars($property['map_image']) ?>" alt="Property Map">
                         <h4>Images:</h4>
                         <?php
+                        // JSON (JavaScript Object Notation) is a lightweight format for storing and exchanging data between a server and a client
                         $images = json_decode($property['property_images'], true);
                         if ($images && is_array($images)) {
                             foreach ($images as $image) {

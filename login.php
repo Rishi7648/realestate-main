@@ -1,13 +1,16 @@
 <?php
+// databse connection
 include 'db.php';
-
+/* form is submitted using post method*/ 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // A REQUEST-METHOD  in PHP refers to the HTTP method used to send data to or request data from a server
     $email = $_POST['email'];
     $password = $_POST['password'];
 
     // Fetch user from the database
     $sql = "SELECT * FROM users WHERE email = :email";
     $stmt = $conn->prepare($sql);
+    // $We use $stmt when we prepare and execute SQL queries securely
     $stmt->execute(['email' => $email]);
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 

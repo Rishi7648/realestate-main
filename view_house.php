@@ -34,6 +34,7 @@ if (isset($_GET['id'])) {
     echo "<p><strong>Map:</strong><br><img src='" . htmlspecialchars($property['map_image']) . "' alt='Property Map' width='600'></p>";
 
     // Display property images (if any)
+    // JSON (JavaScript Object Notation) is a lightweight format for storing and exchanging data between a server and a client
     $property_images = json_decode($property['property_images'], true);
     if ($property_images) {
         echo "<p><strong>Property Images:</strong><br>";

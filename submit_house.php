@@ -1,7 +1,7 @@
 <?php
 session_start();
 include 'db.php'; // Include your database connection file
-
+// A REQUEST-METHOD  in PHP refers to the HTTP method used to send data to or request data from a server
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     // Ensure the user is logged in
     if (!isset($_SESSION['user_id'])) {
